@@ -71,8 +71,8 @@ def get_macroF1(label, pred):
     R = recall_score(label, pred, average='macro')
     f1 = f1_score(label, pred, average='macro')
 
-    print "precision_score:", P
-    print "recall_score:", R
-    print "f1_score:", f1
+    print("precision_score:", P)
+    print("recall_score:", R)
+    print("f1_score:", f1)
 
     return f1

@@ -29,14 +29,14 @@ class ClassFilter:
     Filter data by category
     '''
     def Filter(self):
-        print "Start filter data by category!"
+        print("Start filter data by category!")
         data_by_label = self.__data_by_label
 
         # get the data of each category
         for idx in range(self.__length):
             idx_label = self.__label[idx]
             idx_data = self.__data[idx]
-            if data_by_label.has_key(idx_label):
+            if idx_label in data_by_label:
                 data_by_label[idx_label].append(idx_data)
             else:
                 data_by_label[idx_label] = []

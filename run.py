@@ -12,7 +12,8 @@ from sklearn.svm import SVC
 from asg import ASG
 from class_filter import ClassFilter
 from components import *
-
+from sklearn.datasets import fetch_openml
+import random
 
 '''
 Procedure:
@@ -23,8 +24,24 @@ Procedure:
 '''
 
 if __name__ == '__main__':
+    mnist = fetch_openml('mnist_784')
+    n_train = 60000
+    n_test = 10000
+
+    indices = np.arange(len(mnist))
+    random.seed(0)
+
+    train_idx = np.arange(0, n_train)
+    test_idx = np.arange(n_train + 1, n_train + n_test)
+
+    train_x = mnist.data[train_idx]
+    train_y = mnist.target[train_idx]
+
+    test_X = mnist.data[test_idx]
+    test_y = mnist.target[test_idx]
+
     # an example of MNIST 
-    (train_x, train_y), (valid_x, valid_y), (test_X, test_y) = np.load('data/mnist.pkl')
+    # (train_x, train_y), (valid_x, valid_y), (test_X, test_y) = np.load('data/mnist.pkl')
     '''
     Split data by classification message
     '''
@@ -33,8 +50,8 @@ if __name__ == '__main__':
     # seen class can be set here! default seen class is all class in train data
     cf = ClassFilter(train_x,train_y, SeenClass = seen_class)
     data_by_label = cf.Filter()
-    print "Total label:", cf.getDistinctLabel()
-    print "Seen class is:", seen_class
+    print ("Total label:", cf.getDistinctLabel())
+    print ("Seen class is:", seen_class)
     '''
     # classifier model in ASG can be set here.
     # Note that classifier needs to support the parameter 'sample_weight' in the 'fit' function.

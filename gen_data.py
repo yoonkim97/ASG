@@ -167,7 +167,7 @@ class GenData:
         # parameter.set_positive_size(1)
         # parameter.set_negative_size(5)
 
-        print "generate positive sample of class:", self.__class_num
+        print("generate positive sample of class:", self.__class_num)
         for i in range(self.__generate_size):
             # initial for the generate program
             sample_list = random.sample(range(self.__original_data.shape[0]),self.__init_num)
@@ -178,8 +178,8 @@ class GenData:
             solution = Opt.min(objective, parameter)
             x_plus = solution.get_x()
             self.__positive_dataset.append(x_plus)         
-            print "[ASG] class",self.__class_num, ": generating positive data, data size:",len(self.__positive_dataset)
-            print "**************************************************"
+            print("[ASG] class",self.__class_num, ": generating positive data, data size:",len(self.__positive_dataset))
+            print("**************************************************")
 
             # store the generated data
             isExists = os.path.exists(self.__gendir)
@@ -274,7 +274,7 @@ class GenData:
         # parameter.set_positive_size(1)
         # parameter.set_negative_size(5)
 
-        print "generate negative sample of class:", self.__class_num
+        print("generate negative sample of class:", self.__class_num)
         for i in range(self.__generate_size):
             # init the SRACOS randomly 
             sample_list = random.sample(range(self.__original_data.shape[0]),self.__init_num)
@@ -285,8 +285,8 @@ class GenData:
             solution = Opt.min(objective, parameter)
             x_minus = solution.get_x()
             self.__negative_dataset.append(x_minus)          
-            print "[ASG] class",self.__class_num,": Generating negative data, data size:",len(self.__negative_dataset)
-            print "**************************************************"
+            print("[ASG] class",self.__class_num,": Generating negative data, data size:",len(self.__negative_dataset))
+            print("**************************************************")
             isExists = os.path.exists(self.__gendir)
 
             # store the generated data

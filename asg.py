@@ -51,7 +51,7 @@ class ASG:
         classfilter = self.__classfilter
         # This step can be parallelized for each category
         for NUM in classfilter.getSeenClass():
-            original_data = classfilter.getDatabyLabel()[NUM]
+            original_data = classfilter.getDatabyLabel()[str(NUM)]
             gen_data = GenData(original_data[:sample_size,],class_num = NUM, generate_size = generate_size,classifier = self.__classifier, budget = budget)
             #print "Generate positive data of class ", NUM
             gen_data.generate_negative_data(dim_range = [0,1])
