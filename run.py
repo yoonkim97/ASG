@@ -45,7 +45,7 @@ if __name__ == '__main__':
     '''
     Split data by classification message
     '''
-    seen_class = [2]
+    seen_class = [0, 2]
 
     # seen class can be set here! default seen class is all class in train data
     cf = ClassFilter(train_x,train_y, SeenClass = seen_class)
