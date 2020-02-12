@@ -10,6 +10,8 @@ Date:
 import numpy as np
 import copy
 from gen_data import GenData
+from joblib import dump, load
+
 #from components import dealTesty,getPrecisionRecall,getNovelPrecisionRecall
 
 
@@ -140,6 +142,7 @@ class ASG:
             clf.fit(train_X,train_y,sample_weight = weight)
 
             self.__classifier_list.append(clf)
+            dump(clf, 'model.joblib')
 
         return 
 
