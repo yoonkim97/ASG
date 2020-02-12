@@ -45,7 +45,7 @@ if __name__ == '__main__':
     '''
     Split data by classification message
     '''
-    seen_class = [0,1,3]
+    seen_class = [2]
 
     # seen class can be set here! default seen class is all class in train data
     cf = ClassFilter(train_x,train_y, SeenClass = seen_class)
@@ -65,7 +65,7 @@ if __name__ == '__main__':
     # run_ASG:
     # generate_size: the size of the sample you want to generate
     # sample_size: sample size in origin data when generating data
-    asg.run_ASG(generate_size = 10, sample_size = 300)
+    asg.run_ASG(generate_size = 10, sample_size = 500)
     
     # predict for the test data with unseen class. If the test data belongs to unseen class, then output -1
     print("[ASG] performance on test data")
