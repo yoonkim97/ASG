@@ -143,8 +143,7 @@ class ASG:
 
             self.__classifier_list.append(clf)
             dump(clf, 'model.joblib')
-
-        return 
+        return
 
     def run_ASG(self, generate_size, sample_size):
         self.generate_data(generate_size, sample_size)
