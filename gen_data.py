@@ -30,11 +30,11 @@ class GenData:
         self.__class_num = class_num                                        # class category
         self.__generate_size = generate_size                                # data size of generative data
         self.__gendir = "gendata"                                           # path of store generated data
-        self.__datadir = "data"
+        self.__datadir = "datastorage"
         self.__positive_filename = "gendata/D_plus"+str(class_num)+"_1"     # filename of positive data
         self.__negative_filename = "gendata/D_minus"+str(class_num)+"_1"    # filename of negative data
-        self.__pos_filename = "data/D_plus" + str(class_num) + "_" + timestr + "_1"
-        self.__neg_filename = "data/D_minus" + str(class_num) + "_" + timestr + "_1"
+        self.__pos_filename = "datastorage/D_plus" + str(class_num) + "_" + timestr
+        self.__neg_filename = "datastorage/D_minus" + str(class_num) + "_" + timestr
         self.__deta,self.__deta_min = self.getMinMaxDistance(ori_data)
         self.__Budget = budget                                              # budget in racos
         self.__init_num = 10                                                # init data in racos
@@ -301,8 +301,17 @@ class GenData:
             self.__negative_dataset.append(x_minus)          
             print("[ASG] class",self.__class_num,": Generating negative data, data size:",len(self.__negative_dataset))
             print("**************************************************")
-            isExists = os.path.exists(self.__gendir)
 
+            isDataExists = os.path.exists(self.__datadir)
+            if not isDataExists:
+                os.mkdir(self.__datadir)
+            with open(self.__neg_filename, "a") as f:
+                for k in range(len(self.__negative_dataset)):
+                    for t in range(len(self.__negative_dataset[k])):
+                        f.write(str(self.__negative_dataset[k][t]) + ' ')
+                    f.write("\n")
+
+            isExists = os.path.exists(self.__gendir)
             # store the generated data
             if not isExists:
                 os.mkdir(self.__gendir)
