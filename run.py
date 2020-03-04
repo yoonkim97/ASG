@@ -72,4 +72,6 @@ if __name__ == '__main__':
 
     # set unseen label to -1
     test_label = dealTesty(test_y,seen_class)
-    get_macroF1(result,test_label)
+    print(getPrecisionRecall(result,test_label))
+    print(getNovelPrecisionRecall(result,test_label))
+    print(get_macroF1(result,test_label))
