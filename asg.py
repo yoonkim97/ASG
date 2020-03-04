@@ -1,6 +1,5 @@
 '''
 ASG is a framework for open-category problems
-
 Author:
     Wei-Yang Qu quwy@lamda.nju.edu.cn
 Date:
@@ -34,7 +33,7 @@ class ASG:
 
         '''
             # Note that classifier needs to support sample classification with weight.
-            # Otherwise, you need to modify the function 'train_Dminus' and 'train_Dplus' in the file gen_data.py 
+            # Otherwise, you need to modify the function 'train_Dminus' and 'train_Dplus' in the file gen_data.py
         '''
         self.__classifier = classifier
         self.__classifier_list = []
@@ -83,7 +82,7 @@ class ASG:
         for idx in range(pred_prob.shape[1]):
             prob_list = np.array(pred_prob[:,idx])
 
-            # test data does not belongs to any seen class 
+            # test data does not belongs to any seen class
             if prob_list.max() < 0.5:
                 result.append(-1)
 
