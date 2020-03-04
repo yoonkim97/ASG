@@ -73,5 +73,6 @@ if __name__ == '__main__':
     # set unseen label to -1
     test_label = dealTesty(test_y,seen_class)
     print(getPrecisionRecall(result,test_label))
-    print(getNovelPrecisionRecall(result,test_label))
+    (novel_p, novel_r) = getNovelPrecisionRecall(result,test_label)
+    print(2 * (novel_p * novel_r) / (novel_p + novel_r))
     print(get_macroF1(result,test_label))
