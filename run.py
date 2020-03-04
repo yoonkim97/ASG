@@ -64,7 +64,7 @@ if __name__ == '__main__':
     # run_ASG:
     # generate_size: the size of the sample you want to generate
     # sample_size: sample size in origin data when generating data
-    asg.run_ASG(generate_size = 1, sample_size = 50)
+    asg.run_ASG(generate_size = 300, sample_size = 500)
 
     # predict for the test data with unseen class. If the test data belongs to unseen class, then output -1
     print("[ASG] performance on test data")
