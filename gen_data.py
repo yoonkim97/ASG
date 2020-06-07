@@ -170,40 +170,44 @@ class GenData:
         # parameter.set_positive_size(1)
         # parameter.set_negative_size(5)
 
-        print("generate positive sample of class:", self.__class_num)
-        for i in range(self.__generate_size):
-            # initial for the generate program
-            sample_list = random.sample(range(self.__original_data.shape[0]),self.__init_num)
-            init_data = self.__original_data[sample_list]
-            parameter.set_init_samples(init_data)
+        with open(self.__positive_filename) as f:
+            for line in f:
+                self.__positive_dataset.append([float(x) for x in line.split()])
 
-            objective = Objective(self.train_Dplus, dim)
-            solution = Opt.min(objective, parameter)
-            x_plus = solution.get_x()
-            self.__positive_dataset.append(x_plus)
-            print("[ASG] class",self.__class_num, ": generating positive data, data size:",len(self.__positive_dataset))
-            print("**************************************************")
-
-            isDataExists = os.path.exists(self.__datadir)
-            if not isDataExists:
-                os.mkdir(self.__datadir)
-            with open(self.__pos_filename, "a") as f:
-                for k in range(len(self.__positive_dataset)):
-                    for t in range(len(self.__positive_dataset[k])):
-                        f.write(str(self.__positive_dataset[k][t]) + ' ')
-                    f.write("\n")
-
-            # store the generated data
-            isExists = os.path.exists(self.__gendir)
-            if not isExists:
-                os.mkdir(self.__gendir)
-            with open(self.__positive_filename,"w") as f:
-                f.write("")
-            with open(self.__positive_filename,"a") as f:
-                for k in range(len(self.__positive_dataset)):
-                    for t in range(len(self.__positive_dataset[k])):
-                        f.write(str(self.__positive_dataset[k][t])+ ' ')
-                    f.write("\n")
+        # print("generate positive sample of class:", self.__class_num)
+        # for i in range(self.__generate_size):
+        #     # initial for the generate program
+        #     sample_list = random.sample(range(self.__original_data.shape[0]),self.__init_num)
+        #     init_data = self.__original_data[sample_list]
+        #     parameter.set_init_samples(init_data)
+        #
+        #     objective = Objective(self.train_Dplus, dim)
+        #     solution = Opt.min(objective, parameter)
+        #     x_plus = solution.get_x()
+        #     self.__positive_dataset.append(x_plus)
+        #     print("[ASG] class",self.__class_num, ": generating positive data, data size:",len(self.__positive_dataset))
+        #     print("**************************************************")
+        #
+        #     isDataExists = os.path.exists(self.__datadir)
+        #     if not isDataExists:
+        #         os.mkdir(self.__datadir)
+        #     with open(self.__pos_filename, "a") as f:
+        #         for k in range(len(self.__positive_dataset)):
+        #             for t in range(len(self.__positive_dataset[k])):
+        #                 f.write(str(self.__positive_dataset[k][t]) + ' ')
+        #             f.write("\n")
+        #
+        #     # store the generated data
+        #     isExists = os.path.exists(self.__gendir)
+        #     if not isExists:
+        #         os.mkdir(self.__gendir)
+        #     with open(self.__positive_filename,"w") as f:
+        #         f.write("")
+        #     with open(self.__positive_filename,"a") as f:
+        #         for k in range(len(self.__positive_dataset)):
+        #             for t in range(len(self.__positive_dataset[k])):
+        #                 f.write(str(self.__positive_dataset[k][t])+ ' ')
+        #             f.write("\n")
         return
 
     '''
@@ -286,38 +290,42 @@ class GenData:
         # parameter.set_positive_size(1)
         # parameter.set_negative_size(5)
 
-        print("generate negative sample of class:", self.__class_num)
-        for i in range(self.__generate_size):
-            # init the SRACOS randomly
-            sample_list = random.sample(range(self.__original_data.shape[0]),self.__init_num)
-            init_data = self.__original_data[sample_list]
-            parameter.set_init_samples(init_data)
+        with open(self.__negative_filename) as f:
+            for line in f:
+                self.__negative_dataset.append([float(x) for x in line.split()])
 
-            objective = Objective(self.train_Dminus, dim)
-            solution = Opt.min(objective, parameter)
-            x_minus = solution.get_x()
-            self.__negative_dataset.append(x_minus)
-            print("[ASG] class",self.__class_num,": Generating negative data, data size:",len(self.__negative_dataset))
-            print("**************************************************")
-            isExists = os.path.exists(self.__gendir)
-
-            isDataExists = os.path.exists(self.__datadir)
-            if not isDataExists:
-                os.mkdir(self.__datadir)
-            with open(self.__neg_filename, "a") as f:
-                for k in range(len(self.__negative_dataset)):
-                    for t in range(len(self.__negative_dataset[k])):
-                        f.write(str(self.__negative_dataset[k][t]) + ' ')
-                    f.write("\n")
-
-            # store the generated data
-            if not isExists:
-                os.mkdir(self.__gendir)
-            with open(self.__negative_filename,"w") as f:
-                f.write("")
-            with open(self.__negative_filename,"a") as f:
-                for k in range(len(self.__negative_dataset)):
-                    for t in range(len(self.__negative_dataset[k])):
-                        f.write(str(self.__negative_dataset[k][t])+ ' ')
-                    f.write("\n")
+        # print("generate negative sample of class:", self.__class_num)
+        # for i in range(self.__generate_size):
+        #     # init the SRACOS randomly
+        #     sample_list = random.sample(range(self.__original_data.shape[0]),self.__init_num)
+        #     init_data = self.__original_data[sample_list]
+        #     parameter.set_init_samples(init_data)
+        #
+        #     objective = Objective(self.train_Dminus, dim)
+        #     solution = Opt.min(objective, parameter)
+        #     x_minus = solution.get_x()
+        #     self.__negative_dataset.append(x_minus)
+        #     print("[ASG] class",self.__class_num,": Generating negative data, data size:",len(self.__negative_dataset))
+        #     print("**************************************************")
+        #     isExists = os.path.exists(self.__gendir)
+        #
+        #     isDataExists = os.path.exists(self.__datadir)
+        #     if not isDataExists:
+        #         os.mkdir(self.__datadir)
+        #     with open(self.__neg_filename, "a") as f:
+        #         for k in range(len(self.__negative_dataset)):
+        #             for t in range(len(self.__negative_dataset[k])):
+        #                 f.write(str(self.__negative_dataset[k][t]) + ' ')
+        #             f.write("\n")
+        #
+        #     # store the generated data
+        #     if not isExists:
+        #         os.mkdir(self.__gendir)
+        #     with open(self.__negative_filename,"w") as f:
+        #         f.write("")
+        #     with open(self.__negative_filename,"a") as f:
+        #         for k in range(len(self.__negative_dataset)):
+        #             for t in range(len(self.__negative_dataset[k])):
+        #                 f.write(str(self.__negative_dataset[k][t])+ ' ')
+        #             f.write("\n")
         return
